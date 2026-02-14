@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "PDF Mentor IA",
+  "version": "2.0",
+  "description": "Transformez vos PDF en expériences d'apprentissage interactives",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost:5000/*",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PDF Mentor IA"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

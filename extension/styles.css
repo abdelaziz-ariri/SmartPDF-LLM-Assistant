@@ -1,0 +1,886 @@
+
+    /* ============================================
+       1. VARIABLES ET RESET
+       ============================================ */
+    :root {
+      --primary-blue: #3498db;
+      --primary-blue-dark: #2980b9;
+      --primary-green: #2ecc71;
+      --primary-green-dark: #27ae60;
+      --primary-purple: #9b59b6;
+      --primary-purple-dark: #8e44ad;
+      --primary-orange: #e67e22;
+      --primary-orange-dark: #d35400;
+      --primary-gray: #95a5a6;
+      --primary-gray-dark: #7f8c8d;
+      
+      --text-dark: #2c3e50;
+      --text-medium: #34495e;
+      --text-light: #7f8c8d;
+      --text-white: #ffffff;
+      
+      --bg-light: #f8f9fa;
+      --bg-white: #ffffff;
+      --bg-hover: #f0f8ff;
+      --bg-success: #e8f5e9;
+      --bg-error: #ffebee;
+      --bg-warning: #fffaf0;
+      
+      --border-light: #ecf0f1;
+      --border-medium: #ddd;
+      --border-dark: #bdc3c7;
+      
+      --success: #52c41a;
+      --error: #e74c3c;
+      --warning: #faad14;
+      --info: #1890ff;
+      
+      --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-medium: 0 4px 8px rgba(0,0,0,0.15);
+      --shadow-heavy: 0 8px 16px rgba(0,0,0,0.2);
+      
+      --radius-small: 4px;
+      --radius-medium: 6px;
+      --radius-large: 8px;
+      --radius-xlarge: 10px;
+      
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+      --transition-slow: 0.4s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* ============================================
+       2. STYLES GÉNÉRAUX
+       ============================================ */
+    body {
+      width: 900px;
+      max-height: 900px;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary-blue);
+      color: var(--text-dark);
+      font-size: 22px;
+      font-weight: 600;
+    }
+    
+    h3 {
+      color: var(--text-medium);
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    h4 {
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    /* ============================================
+       3. ONGLETS (TABS)
+       ============================================ */
+    .tab-container {
+      margin-bottom: 24px;
+      background: var(--bg-white);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-light);
+      overflow: hidden;
+    }
+    
+    .tabs {
+      display: flex;
+      background: var(--bg-light);
+      border-bottom: 2px solid var(--primary-blue);
+    }
+    
+    .tab {
+      flex: 1;
+      padding: 14px 16px;
+      text-align: center;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-light);
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tab:hover {
+      background-color: rgba(52, 152, 219, 0.1);
+      color: var(--primary-blue);
+    }
+    
+    .tab.active {
+      background-color: var(--primary-blue);
+      color: var(--text-white);
+      box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+    }
+    
+    .tab-content {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* ============================================
+       4. ZONE DE FICHIER LOCAL
+       ============================================ */
+    .file-input-container {
+      text-align: center;
+      padding: 30px 20px;
+      border: 2px dashed var(--primary-blue);
+      border-radius: var(--radius-large);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      background: linear-gradient(135deg, #f8fbff 0%, #e8f4fc 100%);
+    }
+    
+    .file-input-container:hover {
+      background: linear-gradient(135deg, #f0f8ff 0%, #d8ecff 100%);
+      border-color: var(--primary-blue-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .file-input-container.drag-over {
+      background: linear-gradient(135deg, #e8f4fc 0%, #c3e0ff 100%);
+      border-color: var(--primary-blue);
+      border-style: solid;
+    }
+    
+    .file-input-label {
+      display: block;
+      cursor: pointer;
+    }
+    
+    .file-input-label h4 {
+      margin: 0 0 8px 0;
+      color: var(--primary-blue);
+      font-size: 16px;
+    }
+    
+    .file-input-label p {
+      margin: 0;
+      color: var(--text-light);
+      font-size: 13px;
+    }
+    
+    .hidden-file-input {
+      display: none;
+    }
+    
+    /* ============================================
+       5. ZONE DE PDF EN LIGNE
+       ============================================ */
+    .url-input-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    
+    #pdfUrlInput {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid var(--border-medium);
+      border-radius: var(--radius-medium);
+      font-size: 14px;
+      transition: all var(--transition-fast);
+      background: var(--bg-white);
+      color: var(--text-dark);
+    }
+    
+    #pdfUrlInput:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+    
+    #fetchUrlBtn {
+      background-color: var(--primary-blue);
+      color: var(--text-white);
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-medium);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+    
+    #fetchUrlBtn:hover:not(:disabled) {
+      background-color: var(--primary-blue-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-light);
+    }
+    
+    #fetchUrlBtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .current-tab-info {
+      background-color: rgba(52, 152, 219, 0.05);
+      padding: 16px;
+      border-radius: var(--radius-medium);
+      margin-top: 16px;
+      font-size: 13px;
+      border-left: 4px solid var(--primary-blue);
+    }
+    
+    .current-tab-info p {
+      margin-bottom: 12px;
+      color: var(--text-medium);
+      line-height: 1.4;
+    }
+    
+    .use-current-tab-btn {
+      background-color: var(--primary-green);
+      color: var(--text-white);
+      border: none;
+      padding: 12px;
+      border-radius: var(--radius-medium);
+      width: 100%;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .use-current-tab-btn:hover:not(:disabled) {
+      background-color: var(--primary-green-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-light);
+    }
+    
+    .use-current-tab-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    /* ============================================
+       6. GRILLE DE BOUTONS D'ACTION
+       ============================================ */
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .button-grid button {
+      padding: 14px 12px;
+      border: none;
+      border-radius: var(--radius-medium);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .button-grid button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .button-grid button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    
+    .button-grid button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    
+    #summaryBtn {
+      background-color: var(--primary-green);
+      color: var(--text-white);
+    }
+    
+    #summaryBtn:hover:not(:disabled) {
+      background-color: var(--primary-green-dark);
+    }
+    
+    #quizBtn {
+      background-color: var(--primary-blue);
+      color: var(--text-white);
+    }
+    
+    #quizBtn:hover:not(:disabled) {
+      background-color: var(--primary-blue-dark);
+    }
+    
+    #flashcardsBtn {
+      background-color: var(--primary-purple);
+      color: var(--text-white);
+    }
+    
+    #flashcardsBtn:hover:not(:disabled) {
+      background-color: var(--primary-purple-dark);
+    }
+    
+    #resourcesBtn {
+      background-color: var(--primary-orange);
+      color: var(--text-white);
+    }
+    
+    #resourcesBtn:hover:not(:disabled) {
+      background-color: var(--primary-orange-dark);
+    }
+    
+    /* ============================================
+       7. SECTIONS DE RÉSULTATS
+       ============================================ */
+    .section {
+      margin-bottom: 24px;
+      display: none;
+      animation: slideIn 0.4s ease;
+    }
+    
+    .section.visible {
+      display: block;
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .clear-btn {
+      background-color: var(--primary-gray);
+      color: var(--text-white);
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: var(--radius-small);
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+    
+    .clear-btn:hover {
+      background-color: var(--primary-gray-dark);
+    }
+    
+    .content-container {
+      white-space: pre-line;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: var(--bg-white);
+      border-radius: var(--radius-large);
+      border-left: 4px solid var(--primary-blue);
+      box-shadow: var(--shadow-light);
+      max-height: 300px;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    /* ============================================
+       8. QUIZ
+       ============================================ */
+    .question-block {
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: var(--bg-white);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow-light);
+      border: 1px solid transparent;
+      transition: all var(--transition-normal);
+    }
+    
+    .question-block:hover {
+      border-color: var(--border-light);
+    }
+    
+    .options-container {
+      margin-top: 16px;
+    }
+    
+    .option-label {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-medium);
+      cursor: pointer;
+      background-color: var(--bg-white);
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+    
+    .option-label:hover:not(.disabled) {
+      background-color: var(--bg-hover);
+      border-color: var(--primary-blue);
+    }
+    
+    .option-label.selected {
+      background-color: rgba(52, 152, 219, 0.1);
+      border-color: var(--primary-blue);
+      font-weight: 600;
+    }
+    
+    .option-label.disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    
+    .option-label.correct {
+      background-color: var(--bg-success);
+      border-color: var(--success);
+      color: var(--success);
+    }
+    
+    .option-label.incorrect {
+      background-color: var(--bg-error);
+      border-color: var(--error);
+      color: var(--error);
+    }
+    
+    .option-label input[type="radio"] {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    
+    /* ============================================
+       9. FLASHCARDS
+       ============================================ */
+    .flashcard {
+      margin-bottom: 16px;
+      padding: 20px;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-large);
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f8 100%);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .flashcard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-purple), var(--primary-purple-dark));
+    }
+    
+    .flashcard:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .flashcard-recto {
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    
+    .flashcard-verso {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 2px dashed var(--border-medium);
+      color: var(--text-medium);
+      font-size: 14px;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .flashcard-verso strong {
+      color: var(--text-dark);
+    }
+    
+    /* ============================================
+       10. RESSOURCES ÉDUCATIVES
+       ============================================ */
+    .resource-item {
+      margin-bottom: 16px;
+      padding: 16px;
+      border-left: 4px solid var(--primary-orange);
+      background-color: var(--bg-warning);
+      border-radius: var(--radius-medium);
+      transition: all var(--transition-fast);
+    }
+    
+    .resource-item:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-light);
+    }
+    
+    .resource-type {
+      display: inline-block;
+      padding: 4px 10px;
+      background-color: var(--primary-orange);
+      color: var(--text-white);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-right: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .resource-title {
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 8px 0 4px;
+      font-size: 15px;
+    }
+    
+    .resource-description {
+      color: var(--text-light);
+      font-size: 13px;
+      margin: 6px 0;
+      line-height: 1.4;
+    }
+    
+    .resource-why {
+      color: var(--primary-green);
+      font-size: 12px;
+      margin-top: 8px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    
+    .resource-why strong {
+      color: var(--text-dark);
+    }
+    
+    /* ============================================
+       11. MESSAGES D'ÉTAT ET RÉSULTATS
+       ============================================ */
+    #urlStatus {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: var(--radius-medium);
+      font-size: 13px;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .status-loading {
+      background-color: rgba(52, 152, 219, 0.1);
+      color: var(--primary-blue);
+      border-left: 4px solid var(--primary-blue);
+    }
+    
+    .status-success {
+      background-color: rgba(46, 204, 113, 0.1);
+      color: var(--primary-green);
+      border-left: 4px solid var(--primary-green);
+    }
+    
+    .status-error {
+      background-color: rgba(231, 76, 60, 0.1);
+      color: var(--error);
+      border-left: 4px solid var(--error);
+    }
+    
+    #quizResult {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f8 100%);
+      border-radius: var(--radius-xlarge);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow-light);
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .result-score {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 16px 0;
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .result-percentage {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-medium);
+    }
+    
+    .result-message {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+    
+    /* ============================================
+       12. BOUTON DE SOUMISSION
+       ============================================ */
+    #submitQuizBtn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+      color: var(--text-white);
+      border: none;
+      border-radius: var(--radius-medium);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #submitQuizBtn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    #submitQuizBtn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    
+    #submitQuizBtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: var(--primary-gray);
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* ============================================
+       13. SCROLLBAR PERSONNALISÉE
+       ============================================ */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--bg-light);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-dark);
+      border-radius: 4px;
+      transition: background var(--transition-fast);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-gray);
+    }
+    
+    /* ============================================
+       14. RESPONSIVE DESIGN
+       ============================================ */
+    @media (max-width: 400px) {
+      body {
+        padding: 16px;
+        width: 350px;
+      }
+      
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .url-input-container {
+        flex-direction: column;
+      }
+      
+      #fetchUrlBtn {
+        width: 100%;
+      }
+    }
+    
+    /* ============================================
+       15. UTILITIES
+       ============================================ */
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+      font-style: italic;
+    }
+    
+    .loading::after {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border-light);
+      border-top-color: var(--primary-blue);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+      font-style: italic;
+      background-color: rgba(236, 240, 241, 0.5);
+      border-radius: var(--radius-large);
+      border: 2px dashed var(--border-light);
+    }
+    
+    .tooltip {
+      position: relative;
+      cursor: help;
+    }
+    
+    .tooltip:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--text-dark);
+      color: var(--text-white);
+      padding: 8px 12px;
+      border-radius: var(--radius-small);
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 1000;
+      margin-bottom: 8px;
+    }
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-group button {
+  flex: 1; /* Les deux boutons prennent la même largeur */
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.button-group button:hover {
+  background-color: #155ab6;
+}
+.question-block {
+  background: #fff;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+    /* Ajoutez ceci dans la balise <style> de votre popup.html */
+    
+    .question-block {
+        transition: all 0.3s ease;
+    }
+    
+    .question-block:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .option-label {
+        transition: all 0.2s ease;
+    }
+    
+    .option-label.selected {
+        background-color: #e6f7ff !important;
+        border-color: #1890ff !important;
+        font-weight: 600;
+    }
+    
+    .option-label.correct {
+        background-color: #f6ffed !important;
+        border-color: #52c41a !important;
+        color: #52c41a !important;
+    }
+    
+    .option-label.incorrect {
+        background-color: #fff2f0 !important;
+        border-color: #ff4d4f !important;
+        color: #ff4d4f !important;
+    }
+    
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    
+    #submitQuizBtn:not(:disabled) {
+        background-color: #1890ff;
+        color: white;
+        font-weight: bold;
+    }
+    
+    #quizControls {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+    
+    #summary {
+        white-space: pre-line;
+        line-height: 1.6;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border-left: 4px solid #1890ff;
+    }

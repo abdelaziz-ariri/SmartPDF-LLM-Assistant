@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>PDF Mentor IA</title>
+</head>
+<body>
+  <h2>📘 PDF Mentor IA</h2>
+
+  <div class="tab-container">
+    <div class="tabs">
+      <button class="tab active" data-tab="local">📁 Fichier Local</button>
+      <button class="tab" data-tab="online">🌐 PDF en Ligne</button>
+    </div>
+    
+    <!-- Onglet pour les fichiers locaux -->
+    <div class="tab-content active" id="localTab">
+      <div class="file-input-container" id="fileInputContainer">
+        <label class="file-input-label">
+          <h4>📤 Glissez-déposez ou cliquez pour sélectionner</h4>
+          <p>Sélectionnez un fichier PDF depuis votre ordinateur</p>
+          <input type="file" id="pdfInput" accept="application/pdf" class="hidden-file-input">
+        </label>
+      </div>
+    </div>
+    
+    <!-- Onglet pour les PDF en ligne -->
+    <div class="tab-content" id="onlineTab">
+      <div class="url-input-container">
+        <input type="url" id="pdfUrlInput" placeholder="https://example.com/document.pdf">
+      </div>
+      
+      <div class="current-tab-info">
+        <p><strong>Astuce :</strong> Ouvrez un PDF dans votre navigateur, puis cliquez sur ce bouton :</p>
+        <button id="useCurrentTabBtn" class="use-current-tab-btn">
+          🎯 Utiliser l'onglet actuel
+        </button>
+      </div>
+      
+      <div id="urlStatus" class="url-status"></div>
+    </div>
+  </div>
+
+  <div class="button-grid">
+    <button id="summaryBtn">📝 Résumé</button>
+    <button id="quizBtn">❓ Quiz</button>
+    <button id="flashcardsBtn">🗂️ Flashcards</button>
+    <button id="resourcesBtn">📚 Ressources</button>
+  </div>
+
+  <!-- Section Résumé -->
+  <div class="section" id="summarySection">
+    <div class="section-title">
+      <h3>Résumé :</h3>
+      <button class="clear-btn" data-section="summary">Effacer</button>
+    </div>
+    <div class="content-container" id="summary"></div>
+  </div>
+
+  <!-- Section Quiz -->
+  <div class="section" id="quizSection">
+    <div class="section-title">
+      <h3>Quiz :</h3>
+      <button class="clear-btn" data-section="quiz">Effacer</button>
+    </div>
+    <form id="quizForm"></form>
+    <button id="submitQuizBtn">Soumettre le Quiz</button>
+    <div id="quizResult"></div>
+  </div>
+
+  <!-- Section Flashcards -->
+  <div class="section" id="flashcardsSection">
+    <div class="section-title">
+      <h3>Flashcards :</h3>
+      <button class="clear-btn" data-section="flashcards">Effacer</button>
+    </div>
+    <div class="content-container" id="flashcardsContent"></div>
+  </div>
+
+  <!-- Section Ressources -->
+  <div class="section" id="resourcesSection">
+    <div class="section-title">
+      <h3>Ressources Éducatives :</h3>
+      <button class="clear-btn" data-section="resources">Effacer</button>
+    </div>
+    <div class="content-container" id="resourcesContent"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
