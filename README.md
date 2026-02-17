@@ -73,6 +73,7 @@ The result (summary, quiz, NLP output) is returned to the user via the extension
 Intended for academic and educational use.
 PDFs should be compatible with the AI models used (size, format, encoding).
 The project encourages interactive learning through AI-powered document analysis.
+
 ---
 ## Project Team
 
